@@ -67,9 +67,9 @@ body {
 
 #bioComponent {
   border-right: 2px solid rebeccapurple;
-  padding: 20px; 
-  margin-right: auto;
+  padding: 7.5%; 
   height: 100%;
+  justify-content: space-evenly;
 }
 
 #historyComponent {

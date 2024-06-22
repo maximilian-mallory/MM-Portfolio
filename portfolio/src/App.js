@@ -5,6 +5,7 @@ import bannerImage from './assets/banner.jpg';
 import {useState, useEffect} from 'react';
 import { SplitScreen } from './components/SplitScreen';
 import headshot from './assets/headshot.jpg';
+import { LinkButton } from './components/Buttons';
 
 function Home() {
   return <h1>Home</h1>
@@ -80,6 +81,8 @@ const BioComponent = () => {
   if(error) 
     return <pre>{JSON.stringify(error)}</pre>;
   if(!data) return null
+
+  const programurl = "https://www.dctc.edu/academics/programs-majors/stem/software-development/software-development-datasheet/"
   
   return ( 
     <div id="bioComponent">
@@ -93,8 +96,11 @@ const BioComponent = () => {
         {data.location}
       </p>
       <p>{data.bio}</p>
-      <a href={data.url}>Link to GitHub Profile</a>
+      <LinkButton buttonText="Github" url={data.html_url} color="#6cc644"/>
+      <LinkButton buttonText="LinkedIn" url={"https://www.linkedin.com/in/maximilian-mallory/"} color="#0077B5"/>
+      <LinkButton buttonText="Degree Requirements" url={programurl} color="#6e5494"/>
       </div>
+      
     </div>
   )
 }
