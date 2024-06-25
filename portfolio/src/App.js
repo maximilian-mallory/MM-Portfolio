@@ -6,14 +6,9 @@ import {useState, useEffect} from 'react';
 import { SplitScreen } from './components/SplitScreen';
 import headshot from './assets/headshot.jpg';
 import { LinkButton } from './components/Buttons';
+import { CourseItem, RegularList } from './components/CourseItem';
 
 function Home() {
-  return <h1>Home</h1>
-}
-
-
-
-function About() {
 
   const [aspectRatio, setAspectRatio] = useState('landscape'); // Assume landscape by default
 
@@ -36,26 +31,45 @@ function About() {
 
   const getSplitScreenWeights = () => {
     if (aspectRatio === 'portrait') {
-      return { leftWeight: 1, rightWeight: 2 };
+      return { leftWeight: 2, rightWeight: 1 };
     } else {
 
-      return { leftWeight: 1, rightWeight: 4 };
+      return { leftWeight: 3, rightWeight: 1 };
     }
   };
 
   return (
-  <SplitScreen {...getSplitScreenWeights()}>
-    <BioComponent />
+    <>
+    <div id='mainDiv'>
+    <SplitScreen {...getSplitScreenWeights()}>
     <HistoryComponent/>
+    <BioComponent />
     </SplitScreen>
+    </div>
+    </>
   )
-  
 }
+
+const courses = [
+  {
+    name: 'Database Systems',
+    description: 'This course taught me how to use SQL and Microsoft Access to query data from a relational database'
+  },
+  {
+    name: 'Web Programming III',
+    description: 'This course was my program capstone. I managed and developed a web application mimicking the popular game GeoGuesser.'
+  }
+]
 
 const HistoryComponent = () => {
   return ( 
     <div id='historyComponent'> 
-    <h1>History</h1>
+    <h3>Courses Taken:</h3>
+    <RegularList
+      items={courses}
+      resourceName="course"
+      itemComponent={CourseItem}
+    />
     </div>
   )
   
@@ -118,10 +132,6 @@ function App() {
       <Route 
         path="/" 
         element={<Home />}>
-      </Route>
-      <Route 
-        path="/about" 
-        element={<About />}>
       </Route>
       <Route 
         path="/contact" 
