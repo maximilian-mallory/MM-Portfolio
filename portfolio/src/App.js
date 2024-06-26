@@ -1,16 +1,15 @@
 import './App.css';
 import {NavBar} from './components/NavBar'
 import { Route, Routes, Outlet } from 'react-router-dom'
-import bannerImage from './assets/banner.jpg';
 import {useState, useEffect} from 'react';
 import { SplitScreen } from './components/SplitScreen';
 import headshot from './assets/headshot.jpg';
 import { LinkButton } from './components/Buttons';
-import { CourseItem, RegularList } from './components/CourseItem';
+import { CourseItem, LanguageItem, RegularList } from './components/CourseItem';
 import axios from 'axios';
 
 function Home() {
-
+/*
   const [aspectRatio, setAspectRatio] = useState('landscape'); // Assume landscape by default
 
   useEffect(() => {
@@ -38,11 +37,12 @@ function Home() {
       return { leftWeight: 3, rightWeight: 1 };
     }
   };
-
+*/
+  const splitScreenWeights = { leftWeight: 2, rightWeight: 2 };
   return (
     <>
     <div id='mainDiv'>
-    <SplitScreen {...getSplitScreenWeights()}>
+    <SplitScreen { ...splitScreenWeights}>
     <HistoryComponent/>
     <BioComponent />
     </SplitScreen>
@@ -64,24 +64,36 @@ function Home() {
 
 const HistoryComponent = () => {
   const [courses, setCourses] = useState([]);
+  const [langs, setLangs] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/data');
-                setCourses(response.data);
-                console.log(response.data)
-                console.log(courses)
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+  useEffect(() => {
+      const fetchData = async () => {
+          try {
+              let response = await axios.get('http://localhost:5000/courses');
+              setCourses(response.data);
+              response = await axios.get('http://localhost:5000/lang');
+              setLangs(response.data);
+              console.log(courses)
+              console.log(langs)
+          } catch (error) {
+              console.error('Error fetching data:', error);
+          }
+      };
 
-        fetchData();
-    }, []);
+      fetchData();
+  }, []);
 
   return ( 
-    <div id='historyComponent'> 
+    <>
+    <div class='soft-bubble'> 
+    <h3>Programming Languages:</h3>
+    <RegularList
+      items={langs}
+      resourceName="language"
+      itemComponent={LanguageItem}
+    />
+    </div>
+    <div class='soft-bubble'> 
     <h3>Courses Taken:</h3>
     <RegularList
       items={courses}
@@ -89,6 +101,7 @@ const HistoryComponent = () => {
       itemComponent={CourseItem}
     />
     </div>
+    </>
   )
   
   
@@ -117,7 +130,7 @@ const BioComponent = () => {
   const programurl = "https://www.dctc.edu/academics/programs-majors/stem/software-development/software-development-datasheet/"
   
   return ( 
-    <div id="bioComponent">
+    <div class="soft-bubble">
       <div >
       <h1>About Me</h1>
       <h2>
@@ -144,7 +157,6 @@ function Contact() {
 function App() {
   return (
     <>
-    <div className='navBanner'/>
     <NavBar/>
     <Routes>
       <Route 

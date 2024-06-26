@@ -46,6 +46,26 @@ export const CourseItem = ({ course }) => {
     )
 }
 
+export const LanguageItem = ({ language }) => {
+
+    const [shouldShowModal, setShouldShowModal] = useState(false)
+
+    const { name, courses, experience, frameworks, projects } = language;
+
+    return  (
+        <>
+        <Modal 
+            shouldShow={shouldShowModal}
+            onRequestClose={()=>setShouldShowModal(false)}
+        >
+            <p>I have {experience} years of experience with {name}</p>
+            <p>I learned {name} in {courses[0]}</p>
+        </Modal>
+        <StyledCourseItem onClick={() => setShouldShowModal(!shouldShowModal)} >{name}</StyledCourseItem>
+        </>
+    )
+}
+
 export const RegularList = ({ 
     items, 
     resourceName,
