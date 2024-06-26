@@ -7,6 +7,7 @@ import { SplitScreen } from './components/SplitScreen';
 import headshot from './assets/headshot.jpg';
 import { LinkButton } from './components/Buttons';
 import { CourseItem, RegularList } from './components/CourseItem';
+import axios from 'axios';
 
 function Home() {
 
@@ -50,7 +51,7 @@ function Home() {
   )
 }
 
-const courses = [
+/*const courses = [
   {
     name: 'Database Systems',
     description: 'This course taught me how to use SQL and Microsoft Access to query data from a relational database'
@@ -59,9 +60,26 @@ const courses = [
     name: 'Web Programming III',
     description: 'This course was my program capstone. I managed and developed a web application mimicking the popular game GeoGuesser.'
   }
-]
+]*/
 
 const HistoryComponent = () => {
+  const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/data');
+                setCourses(response.data);
+                console.log(response.data)
+                console.log(courses)
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
   return ( 
     <div id='historyComponent'> 
     <h3>Courses Taken:</h3>

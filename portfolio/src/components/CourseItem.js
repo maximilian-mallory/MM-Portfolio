@@ -31,7 +31,7 @@ export const CourseItem = ({ course }) => {
 
     const [shouldShowModal, setShouldShowModal] = useState(false)
 
-    const { name, description } = course;
+    const { title, description } = course;
 
     return  (
         <>
@@ -41,7 +41,7 @@ export const CourseItem = ({ course }) => {
         >
             <p>{description}</p>
         </Modal>
-        <StyledCourseItem onClick={() => setShouldShowModal(!shouldShowModal)} >{name}</StyledCourseItem>
+        <StyledCourseItem onClick={() => setShouldShowModal(!shouldShowModal)} >{title}</StyledCourseItem>
         </>
     )
 }
