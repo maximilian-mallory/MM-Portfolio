@@ -4,9 +4,12 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 const port = process.env.PORT || 5000;
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 // Replace the following with your MongoDB Atlas connection string
-const uri = 'mongodb+srv://maxmallory:HW0US9llFcpRNx7D@portfolio.n8slsbr.mongodb.net/?retryWrites=true&w=majority&appName=Portfolio';
+const uri = process.env.MONGODB_URI;
 
 let db;
 
