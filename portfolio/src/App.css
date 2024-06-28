@@ -13,6 +13,7 @@ body {
   justify-content: space-between;
   align-items: stretch;
   gap: 2rem;
+  height: 5vh;
   padding: 0 1rem;
   z-index: 1;
 }
@@ -71,8 +72,9 @@ body {
   color: #ffffff; /* white text */
   border-radius: 10px; /* rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* soft shadow */
-  padding: 1rem; /* adjust padding as needed */
+  padding: 2rem; /* adjust padding as needed */
   margin: 1rem;
+  font-size: 1.25rem;
 }
 
 .historyComponent h1 {
@@ -82,7 +84,7 @@ body {
 
 #mainDiv {
   height: 100%;
-  margin-left: 15%;
-  width: 70%;
+  margin-left: 17.5%;
+  width: 65%;
   justify-content: space-around;
 }

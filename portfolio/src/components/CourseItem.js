@@ -25,13 +25,16 @@ const ModalBody = styled.div`
     background: white;
     padding: 20px;
     border-radius: 5px;
+    color: black;
+    max-width: 30rem;
+    font-size: 18px;
 `;
 
 export const CourseItem = ({ course }) => {
 
     const [shouldShowModal, setShouldShowModal] = useState(false)
 
-    const { title, description } = course;
+    const { title, description, semester, grade } = course;
 
     return  (
         <>
@@ -41,7 +44,7 @@ export const CourseItem = ({ course }) => {
         >
             <p>{description}</p>
         </Modal>
-        <StyledCourseItem onClick={() => setShouldShowModal(!shouldShowModal)} >{title}</StyledCourseItem>
+        <StyledCourseItem onClick={() => setShouldShowModal(!shouldShowModal) } >{title}</StyledCourseItem>
         </>
     )
 }

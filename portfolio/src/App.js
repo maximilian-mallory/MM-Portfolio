@@ -38,7 +38,7 @@ function Home() {
     }
   };
 */
-  const splitScreenWeights = { leftWeight: 2, rightWeight: 2 };
+  const splitScreenWeights = { leftWeight: 1.5, rightWeight: 1 };
   return (
     <>
     <div id='mainDiv'>
@@ -70,11 +70,11 @@ const HistoryComponent = () => {
       const fetchData = async () => {
           try {
               let response = await axios.get('http://localhost:5000/courses');
+              console.log(response.data)
               setCourses(response.data);
               response = await axios.get('http://localhost:5000/lang');
+              console.log(response.data)             
               setLangs(response.data);
-              console.log(courses)
-              console.log(langs)
           } catch (error) {
               console.error('Error fetching data:', error);
           }
@@ -85,7 +85,7 @@ const HistoryComponent = () => {
 
   return ( 
     <>
-    <div class='soft-bubble'> 
+    <div className='soft-bubble'> 
     <h3>Programming Languages:</h3>
     <RegularList
       items={langs}
@@ -93,7 +93,7 @@ const HistoryComponent = () => {
       itemComponent={LanguageItem}
     />
     </div>
-    <div class='soft-bubble'> 
+    <div className='soft-bubble'> 
     <h3>Courses Taken:</h3>
     <RegularList
       items={courses}
@@ -130,7 +130,7 @@ const BioComponent = () => {
   const programurl = "https://www.dctc.edu/academics/programs-majors/stem/software-development/software-development-datasheet/"
   
   return ( 
-    <div class="soft-bubble">
+    <div className="soft-bubble">
       <div >
       <h1>About Me</h1>
       <h2>

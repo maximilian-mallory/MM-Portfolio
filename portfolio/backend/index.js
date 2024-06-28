@@ -33,7 +33,7 @@ app.get('/courses', async (req, res) => {
     console.log("courses hit")
     try {
         const collection = db.collection('courses');
-        const data = await collection.find({}).toArray();
+        const data = await collection.find().sort({ title: -1 }).toArray();
         res.json(data);
     } catch (error) {
         res.status(500).send('Error fetching data');
@@ -44,7 +44,7 @@ app.get('/lang', async (req, res) => {
     console.log("langs hit")
     try {
         const collection = db.collection('languages');
-        const data = await collection.find({}).toArray();
+        const data = await collection.find().sort({ title: -1 }).toArray();
         res.json(data);
     } catch (error) {
         res.status(500).send('Error fetching data');
