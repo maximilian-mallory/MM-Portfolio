@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "start": "concurrently \"npm run server\" \"npm run client\"",
+  "server": "node index.js", 
+  "client": "npm run start --prefix ../"
+},
+
   "keywords": [],
   "author": "",
   "license": "ISC",
